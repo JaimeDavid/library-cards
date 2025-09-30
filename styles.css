@@ -143,6 +143,35 @@ footer{
 
 .body-library{
     width: 100vw;
-    height: 75vh;
+    height: 80vh;
     background-color: var(--sinopia);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    overflow: auto;
+}
+
+.library-card{
+    height: 20vh;
+    width: 25vw;
+    background-color: var(--eerie-black);
+    border-radius: 15px;
+    color: var(--timberwolf);
+}
+
+
+dialog{
+    width: 45vw;
+    height: 45vh;
+    background-color: var(--eerie-black);
+    color: var(--timberwolf);
+}
+
+dialog[open]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
