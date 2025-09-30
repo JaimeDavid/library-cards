@@ -167,6 +167,11 @@ dialog{
     height: 45vh;
     background-color: var(--eerie-black);
     color: var(--timberwolf);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
 }
 
 dialog[open]{

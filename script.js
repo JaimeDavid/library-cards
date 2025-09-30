@@ -45,7 +45,7 @@ function createCard(){
 }
 
 //DOM manipulation
-    //DOM variable
+    //DOM variables
 let addBookButton = document.querySelector('.add');
 let closeButton = document.querySelector('.close');
 let submitButton = document.querySelector('.submit');
@@ -58,7 +58,7 @@ let dialogRead = document.querySelector('.read');
 
 
     //DOM eventlisteners
-    //opens dialogbox
+
 addBookButton.addEventListener('click', ()=>{
     dialogBox.showModal()
 });
