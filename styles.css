@@ -154,7 +154,7 @@ footer{
 }
 
 .library-card{
-    height: 20vh;
+    height: 30vh;
     width: 25vw;
     background-color: var(--eerie-black);
     border-radius: 15px;
@@ -172,6 +172,13 @@ footer{
     align-items: center;
 
 }
+
+.card-read, .card-delete{
+    height:100%;
+    width: 50%;
+
+}
+
 
 
 dialog{
@@ -198,4 +205,22 @@ dialog[open]{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#toggleButton{
+    height: 90%;
+    width: 90%;
+    margin-left: 1vh;
+    border-radius: 25px;
+    background-color: var(--golden-brown);
+    color: var(--timberwolf);
+}
+
+.deleteButton{
+    height: 90%;
+    width: 90%;
+    margin-right: 1vh;
+    border-radius: 25px;
+    background-color: var(--hunter-green);
+    color: var(--timberwolf);
 }

@@ -18,17 +18,12 @@ function addBookToLibrary(title, author, pages, read){
 
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    //myLibrary.push(new Book(title, author, pages, read));
+    
 
 }
 
 
-//books for test
 
-//addBookToLibrary('My bioggraphy', 'Jaime David', 999999, false);
-//addBookToLibrary('Lord of the rings', 'JR Tolkien', 700, true);
-//addBookToLibrary('El poder de la mente subconsciente', 'Joseph Murphy', 274, true);
-//addBookToLibrary('La voragine', 'ni idea', 400, false);
 
 //function that display each book in myLibrary in the body of the webpage
 function displayBooks(){
@@ -41,28 +36,54 @@ function displayBooks(){
             continue;
         }
         const libraryCard = createCard(); 
+
+        let deleteButton = document.createElement('button');
+        let deletePlaceholder = document.querySelector('.card-delete');
+        deleteButton.className = 'deleteButton';
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () =>{
+            let id = book['id'];
+            myLibrary = myLibrary.filter(book => book['id'] !== id);
+            libraryCard.remove();
+            });
+        deletePlaceholder.appendChild(deleteButton);
+
         for (const key in book){
+            if (key === 'read'){
+                let toggleButton = document.createElement('button');
+                buttonPlaceHolder = libraryCard.querySelector('.card-read')
+                toggleButton.setAttribute('id', 'toggleButton');
+                toggleButtonReadStatus(book.read, toggleButton); 
+                
+                toggleButton.addEventListener('click', ()=>{
+                    changeBookReadStatus(book.id, toggleButton);
+                });
+                buttonPlaceHolder.appendChild(toggleButton);               
+                
+            }
+
 
             switch(key){
                 case 'title':
                     const titleDiv = libraryCard.querySelector('.card-title');
                     titleDiv.textContent = book[key];                   
-                    continue;
+                    break;
 
                 case 'author':
                     const authorDiv = libraryCard.querySelector('.card-author')
                     authorDiv.textContent = `By: ${book[key]}`;                
-                    continue;
+                    break;
 
                 case 'pages':
                     const pagesDiv = libraryCard.querySelector('.card-pages')
                     pagesDiv.textContent = `Number of pages ${book[key]}`;
-                    continue;
+                    break;
 
                 case 'id':
                     libraryCard.setAttribute('data-id', book[key]);
+                    break;
             }
-            
+
         }
 
 
@@ -86,7 +107,7 @@ function createCard(){
     cardButtons.className = 'card-buttons'; 
     let cardRead = document.createElement('div');
     let cardDelete =  document.createElement('div');
-    cardRead.clasName = 'card-read';
+    cardRead.className = 'card-read';
     cardDelete.className = 'card-delete';
 
 
@@ -109,6 +130,38 @@ function resetDialogBoxData(){
     dialogRead.checked = false;
     
 }
+
+//changes toggleButton status
+
+function toggleButtonReadStatus(isRead, buttonElement){
+    if (isRead === true){
+        buttonElement.className = 'read';
+        buttonElement.textContent = 'Read';
+    }else {
+        buttonElement.className = 'unread';
+        buttonElement.textContent = 'Unread';
+    }    
+
+}
+
+
+function changeBookReadStatus(bookId, buttonElement) {
+    // 1. Find the book object in the library array using the ID
+    const bookToUpdate = myLibrary.find(book => book.id === bookId);
+
+    if (bookToUpdate) {
+        // 2. Toggle the read status property on the object
+        // Use the logical NOT operator (!) to flip the boolean value
+        bookToUpdate.read = !bookToUpdate.read;
+
+        // 3. Update the button's appearance immediately
+        // Pass the updated status and the specific button element
+        toggleButtonReadStatus(bookToUpdate.read, buttonElement);
+    } else {
+        console.error(`Book with ID ${bookId} not found.`);
+    }
+}
+
 
 //DOM manipulation
     //DOM variables
