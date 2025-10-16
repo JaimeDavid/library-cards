@@ -38,7 +38,7 @@ function displayBooks(){
         const libraryCard = createCard(); 
 
         let deleteButton = document.createElement('button');
-        let deletePlaceholder = document.querySelector('.card-delete');
+        let deletePlaceholder = libraryCard.querySelector('.card-delete');
         deleteButton.className = 'deleteButton';
         deleteButton.textContent = 'Delete';
         deleteButton.addEventListener('click', () =>{
