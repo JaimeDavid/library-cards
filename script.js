@@ -23,7 +23,14 @@ function addBookToLibrary(title, author, pages, read){
 }
 
 
+//Prototype function that toggle read status
+Book.prototype.toggleReadStatus = function(buttonElement){
+    //simply flips the boolean value of the read property.
+    this.read = !this.read;
+    toggleButtonReadStatus(this.read, buttonElement);
+  
 
+}
 
 //function that display each book in myLibrary in the body of the webpage
 function displayBooks(){
@@ -56,7 +63,8 @@ function displayBooks(){
                 toggleButtonReadStatus(book.read, toggleButton); 
                 
                 toggleButton.addEventListener('click', ()=>{
-                    changeBookReadStatus(book.id, toggleButton);
+                    //changeBookReadStatus(book.id, toggleButton);
+                    book.toggleReadStatus(toggleButton);
                 });
                 buttonPlaceHolder.appendChild(toggleButton);               
                 
