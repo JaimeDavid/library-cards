@@ -24,14 +24,29 @@ function addBookToLibrary(title, author, pages, read){
 
 
 //Prototype function that toggle read status
-Book.prototype.toggleReadStatus = function(buttonElement){
+// Book.prototype.toggleReadStatus = function(buttonElement){
+//     //simply flips the boolean value of the read property.
+//     this.read = !this.read;
+//     toggleButtonReadStatus(this.read, buttonElement);
+  
+
+// }
+
+//protoyple inheritance
+//empty constructor
+function ChangeStatusBook(){
+    if(!new.target){
+        throw Error("You must use the 'new' operator to call the constructor");
+    }
+}
+//function that changes status
+ChangeStatusBook.prototype.toggleReadStatus = function(buttonElement){
     //simply flips the boolean value of the read property.
     this.read = !this.read;
     toggleButtonReadStatus(this.read, buttonElement);
-  
-
 }
 
+Object.setPrototypeOf(Book.prototype, ChangeStatusBook.prototype);
 //function that display each book in myLibrary in the body of the webpage
 function displayBooks(){
     
